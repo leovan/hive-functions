@@ -1,0 +1,15 @@
+# IntelliJ
+.idea
+*.iml
+
+# Eclipse
+.settings
+.classpath
+.factorypath
+.project
+
+# VS Code
+.vscode
+
+# Java
+target
