@@ -2,7 +2,7 @@
 
 ![License](https://img.shields.io/github/license/leovan/hive-functions.svg)
 ![Issues](https://img.shields.io/github/issues/leovan/hive-functions.svg)
-![Build](https://img.shields.io/travis/leovan/hive-functions.svg)
+![Build](https://img.shields.io/travis/com/leovan/hive-functions.svg)
 
 ---
 
