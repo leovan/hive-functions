@@ -11,20 +11,16 @@ edit_uri: edit/main/docs/
 # Copyright
 copyright: 版权所有 &copy; 2001-2021, Leo Van
 
-# Google analytics
-google_analytics:
-  - G-CC3LZ8TS82
-  - auto
-
 # Navigation
 nav:
   - 主页: index.md
-  - JSON 函数: json-functions.md
+  - 设备相关函数: device-functions.md
+  - 地理相关函数: geo-functions.md
+  - JSON 相关函数: json-functions.md
 
 # Theme
 theme:
   name: material
-  custom_dir: theme
   include_search_page: false
   search_index_only: true
   language: zh
@@ -34,8 +30,8 @@ theme:
     - search.suggest
   palette:
     scheme: default
-    primary: indigo
-    accent: indigo
+    primary: deep purple
+    accent: deep purple
   font:
     text: Roboto
     code: Roboto Mono
@@ -56,6 +52,9 @@ extra:
     - icon: material/github
       link: https://github.com/leovan
       name: Github
+  analytics:
+    provider: google
+    property: G-CC3LZ8TS82
 extra_css:
   - css/image.css
   - css/table.css
