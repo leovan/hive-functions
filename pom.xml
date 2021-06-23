@@ -12,7 +12,7 @@
     <repositories>
         <repository>
             <id>spring-plugin</id>
-            <url>https://repo.spring.io/plugins-release/</url>
+            <url>https://maven.aliyun.com/repository/spring-plugin</url>
         </repository>
     </repositories>
 
