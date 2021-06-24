@@ -1,6 +1,7 @@
 # IntelliJ
 .idea
 *.iml
+dependency-reduced-pom.xml
 
 # Eclipse
 .settings
@@ -16,3 +17,6 @@ target
 
 # Doc
 site
+
+# Design
+*.psd
