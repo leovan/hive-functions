@@ -1,9 +1,7 @@
-package me.leovan.hive.device;
+package me.leovan.hive.udf.device;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import me.leovan.hive.udf.device.FormatMacAddressUDF;
 
 public class FormatMacAddressUDFTest {
     private final FormatMacAddressUDF udf = new FormatMacAddressUDF();

@@ -3,7 +3,7 @@ package me.leovan.hive.udf.json;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonGenerator;
-import me.leovan.hive.utils.TextUtils;
+import me.leovan.hive.udf.utils.TextUtils;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
 import org.apache.hadoop.hive.ql.exec.Description;

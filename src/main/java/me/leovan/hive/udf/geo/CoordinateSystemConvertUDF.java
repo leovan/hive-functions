@@ -1,6 +1,6 @@
 package me.leovan.hive.udf.geo;
 
-import me.leovan.hive.utils.GeoUtils;
+import me.leovan.hive.udf.utils.GeoUtils;
 import org.apache.hadoop.hive.ql.exec.Description;
 import org.apache.hadoop.hive.ql.exec.UDF;
 import org.apache.hadoop.hive.ql.exec.UDFArgumentException;

@@ -1,6 +1,5 @@
-package me.leovan.hive.geo;
+package me.leovan.hive.udf.geo;
 
-import me.leovan.hive.udf.geo.CoordinateSystemConvertUDF;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

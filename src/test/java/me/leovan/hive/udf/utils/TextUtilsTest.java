@@ -1,4 +1,4 @@
-package me.leovan.hive.utils;
+package me.leovan.hive.udf.utils;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

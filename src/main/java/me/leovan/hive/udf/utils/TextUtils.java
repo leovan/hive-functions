@@ -1,4 +1,4 @@
-package me.leovan.hive.utils;
+package me.leovan.hive.udf.utils;
 
 public class TextUtils {
     public static String camelCaseToSnakeCase(String camelCase) {
