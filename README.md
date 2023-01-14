@@ -14,4 +14,4 @@
 
 The MIT License (MIT)
 
-Copyright (c) 2020-2021 Leo Van
+Copyright (c) 2020-2023 Leo Van

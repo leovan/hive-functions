@@ -1,15 +1,16 @@
+# Website information
 site_name: Hive 函数
 site_url: https://hive-functions.leovan.tech
 site_author: Leo Van | 范叶亮
 site_description: Hive 函数
 
 # Repository
-repo_name: leovan/cytoscape-functions
+repo_name: leovan/hive-functions
 repo_url: https://github.com/leovan/hive-functions
 edit_uri: edit/main/docs/
 
 # Copyright
-copyright: 版权所有 &copy; 2001-2021, Leo Van
+copyright: 版权所有 &copy; 2001-2023, Leo Van | 范叶亮
 
 # Navigation
 nav:
@@ -21,6 +22,7 @@ nav:
 # Theme
 theme:
   name: material
+  custom_dir: overrides
   include_search_page: false
   search_index_only: true
   language: zh
@@ -28,13 +30,23 @@ theme:
     - tabs
     - navigation.expand
     - search.suggest
+    - search.highlight
+    - navigation.top
   palette:
-    scheme: default
-    primary: deep purple
-    accent: deep purple
-  font:
-    text: Roboto
-    code: Roboto Mono
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: yellow
+      accent: yellow
+      toggle:
+        icon: material/weather-night
+        name: 暗黑
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: yellow
+      accent: yellow
+      toggle:
+        icon: material/white-balance-sunny
+        name: 明亮
   favicon: images/hive-functions-icon.png
   logo: images/hive-functions-icon.png
 
@@ -58,9 +70,11 @@ extra:
 extra_css:
   - css/image.css
   - css/table.css
+  - css/google-adsense.css
 extra_javascript:
-  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
   - js/math.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 # Markdown extensions
 markdown_extensions:
@@ -71,10 +85,12 @@ markdown_extensions:
   - footnotes
   - meta
   - md_in_html
+  - tables
   - toc:
       permalink: true
-      toc_depth: 4
-      slugify: !!python/name:pymdownx.slugs.uslugify
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
   - pymdownx.arithmatex:
       generic: true
   - pymdownx.betterem:
@@ -91,7 +107,7 @@ markdown_extensions:
   - pymdownx.magiclink:
       repo_url_shorthand: true
       user: leovan
-      repo: hive-functions
+      repo: cytoscape-manual
   - pymdownx.mark
   - pymdownx.smartsymbols
   - pymdownx.superfences:
@@ -99,7 +115,8 @@ markdown_extensions:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
-  - pymdownx.tabbed
+  - pymdownx.tabbed:
+      alternate_style: true
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde
