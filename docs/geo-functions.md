@@ -10,7 +10,7 @@
 CREATE TEMPORARY FUNCTION
   GREAT_CIRCLE_DISTANCE
 AS
-  'me.leovan.hive.udf.geo.GreatCircleDistanceUDF';
+  'tech.leovan.hive.udf.geo.GreatCircleDistanceUDF';
 ```
 
 #### 参数
@@ -29,7 +29,7 @@ AS
 
 #### 示例
 
-##### 示例 1
+SQL：
 
 ```sql
 SELECT
@@ -43,7 +43,7 @@ SELECT
 1067.9805366585604
 ```
 
-##### 示例 2
+SQL：
 
 ```sql
 SELECT
@@ -59,7 +59,7 @@ SELECT
 1067.9805366585604
 ```
 
-##### 示例 3
+SQL：
 
 ```sql
 SELECT
@@ -83,7 +83,7 @@ SELECT
 CREATE TEMPORARY FUNCTION
   GEOHASH_ENCODE
 AS
-  'me.leovan.hive.udf.geo.GeohashEncodeUDF';
+  'tech.leovan.hive.udf.geo.GeohashEncodeUDF';
 ```
 
 #### 参数
@@ -94,7 +94,7 @@ AS
 
 #### 示例
 
-##### 示例 1
+SQL：
 
 ```sql
 SELECT
@@ -116,7 +116,7 @@ wx4g09n
 CREATE TEMPORARY FUNCTION
   GEOHASH_DECODE
 AS
-  'me.leovan.hive.udf.geo.GeohashDecodeUDF';
+  'tech.leovan.hive.udf.geo.GeohashDecodeUDF';
 ```
 
 #### 参数
@@ -125,7 +125,7 @@ AS
 
 #### 示例
 
-##### 示例 1
+SQL：
 
 ```sql
 SELECT
@@ -154,7 +154,7 @@ SELECT
 CREATE TEMPORARY FUNCTION
   COORDINATE_SYSTEM_CONVERT
 AS
-  'me.leovan.hive.udf.geo.CoordinateSystemConvertUDF';
+  'tech.leovan.hive.udf.geo.CoordinateSystemConvertUDF';
 ```
 
 #### 参数
@@ -172,7 +172,7 @@ AS
 
 #### 示例
 
-##### 示例 1
+SQL：
 
 ```sql
 SELECT

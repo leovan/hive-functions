@@ -1,0 +1,77 @@
+# 文本相关函数
+
+## 函数
+
+### `BLANK_TO_NULL`
+
+将空字符串转换为 NULL。
+
+```sql
+CREATE TEMPORARY FUNCTION
+  BLANK_TO_NULL
+AS
+  'tech.leovan.hive.udf.text.BlankToNullUDF';
+```
+
+#### 参数
+
+- TEXT（必选）：待转换文本
+- TRIM（可选）：`BOOLEAN` 类型，是否去除字符串两端空白字符
+
+#### 示例
+
+SQL：
+
+```sql
+SELECT
+  BLANK_TO_NULL('')
+;
+```
+
+输出结果为：
+
+```text
+null
+```
+
+SQL：
+
+```sql
+SELECT
+  BLANK_TO_NULL('\t')
+;
+```
+
+输出结果为：
+
+```text
+null
+```
+
+SQL：
+
+```sql
+SELECT
+  BLANK_TO_NULL(' not null ')
+;
+```
+
+输出结果为：
+
+```text
+ not null 
+```
+
+SQL：
+
+```sql
+SELECT
+  BLANK_TO_NULL('\t', false)
+;
+```
+
+输出结果为：
+
+```text
+\t
+```

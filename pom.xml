@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>me.leovan</groupId>
+    <groupId>tech.leovan</groupId>
     <artifactId>hive-functions</artifactId>
     <packaging>jar</packaging>
     <version>1.0.0</version>
@@ -34,11 +34,12 @@
         <hadoop.version>2.10.1</hadoop.version>
 
         <guava.version>31.1-jre</guava.version>
-        <jackson.version>2.14.0</jackson.version>
+        <jackson.version>2.14.2</jackson.version>
         <jsonpath.version>2.7.0</jsonpath.version>
         <gson.version>2.10.1</gson.version>
         <spatial4j.version>0.8</spatial4j.version>
         <jts.verion>1.19.0</jts.verion>
+        <openkit-java.version>2.2.0</openkit-java.version>
     </properties>
 
     <dependencies>
@@ -140,6 +141,11 @@
             <version>${jts.verion}</version>
             <type>pom</type>
         </dependency>
+        <dependency>
+            <groupId>com.dynatrace.openkit</groupId>
+            <artifactId>openkit-java</artifactId>
+            <version>${openkit-java.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -226,7 +232,7 @@
                             <relocations>
                                 <relocation>
                                     <pattern>com.google.common</pattern>
-                                    <shadedPattern>me.leovan.hive.shaded.com.google.common</shadedPattern>
+                                    <shadedPattern>tech.leovan.hive.shaded.com.google.common</shadedPattern>
                                 </relocation>
                             </relocations>
                         </configuration>

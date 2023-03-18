@@ -10,7 +10,7 @@
 CREATE TEMPORARY FUNCTION
   TO_JSON
 AS
-  'me.leovan.hive.udf.json.ToJsonUDF';
+  'tech.leovan.hive.udf.json.ToJsonUDF';
 ```
 
 #### 参数
@@ -20,7 +20,7 @@ AS
 
 #### 示例
 
-##### 示例 1
+SQL：
 
 ```sql
 SELECT
@@ -57,7 +57,7 @@ SELECT
 CREATE TEMPORARY FUNCTION
   EXTRACT_JSON
 AS
-  'me.leovan.hive.udf.json.ExtractJsonUDF';
+  'tech.leovan.hive.udf.json.ExtractJsonUDF';
 ```
 
 #### 参数
@@ -66,7 +66,7 @@ AS
 
 #### 示例
 
-##### 示例 1
+SQL：
 
 ```sql
 SELECT
@@ -83,7 +83,7 @@ SELECT
 "v1"
 ```
 
-##### 示例 2
+SQL：
 
 ```sql
 SELECT
@@ -100,7 +100,7 @@ SELECT
 3
 ```
 
-##### 示例 3
+SQL：
 
 ```sql
 SELECT
@@ -117,7 +117,7 @@ SELECT
 ["v",3]
 ```
 
-##### 示例 4
+SQL：
 
 ```sql
 SELECT
@@ -134,7 +134,7 @@ SELECT
 "v"
 ```
 
-##### 示例 5
+SQL：
 
 ```sql
 SELECT
@@ -151,7 +151,7 @@ SELECT
 {"k1":"v1","k2":3}
 ```
 
-##### 示例 6
+SQL：
 
 ```sql
 SELECT
