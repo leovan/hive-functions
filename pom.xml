@@ -11,8 +11,8 @@
 
     <repositories>
         <repository>
-            <id>spring-plugin</id>
-            <url>https://maven.aliyun.com/repository/spring-plugin</url>
+            <id>conjars</id>
+            <url>https://conjars.org/repo</url>
         </repository>
     </repositories>
 
