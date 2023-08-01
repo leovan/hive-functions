@@ -18,6 +18,10 @@ AS
 - STRUCT（必选）：待转换的 Hive 结构
 - CONVERT_TO_CAMEL_CASE（可选）：`BOOLEAN` 类型，是否将 JSON 的 KEY 转换为 Camel Case 样式
 
+#### 返回值
+
+JSON：`STRING` 类型
+
 #### 示例
 
 SQL：
@@ -63,6 +67,10 @@ AS
 #### 参数
 - JSON（必选）：待提取的 JSON
 - JSON_PATH（必选）：JSON Path 表达式
+
+#### 返回值
+
+JSON PATH 对应的值：`STRING` 类型
 
 #### 示例
 

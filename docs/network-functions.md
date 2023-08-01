@@ -18,6 +18,10 @@ AS
 - MAC_ADDRESS（必选）：MAC 地址
 - ILLEGAL_TO_NULL（可选）：非法 MAC 地址是否转换为 NULL
 
+#### 返回值
+
+格式化的 MAC 地址：`STRING` 类型
+
 #### 示例
 
 SQL：
@@ -133,6 +137,10 @@ AS
 
 - IP_ADDRESS（必选）：IP 地址
 - ILLEGAL_TO_NULL（可选）：非法 IP 地址是否转换为 NULL
+
+#### 返回值
+
+格式化的 IP 地址：`STRING` 类型
 
 #### 示例
 

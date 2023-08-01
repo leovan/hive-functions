@@ -27,6 +27,10 @@ AS
     - `MEAN`：平均半径，6371.0087714 千米
     - `EQUATORIAL`：赤道半径，6378.137 千米
 
+#### 返回值
+
+距离（单位：千米）：`DOUBLE` 类型
+
 #### 示例
 
 SQL：
@@ -92,6 +96,10 @@ AS
 - LONGITUDE（必选）：`DOUBLE` 类型，坐标经度
 - PRECISION（必选）：`INTEGER` 类型，Geohash 精度
 
+#### 返回值
+
+Geohash 编码：`STRING` 类型
+
 #### 示例
 
 SQL：
@@ -122,6 +130,10 @@ AS
 #### 参数
 
 - GEOHASH（必选）：`STRING` 类型，Geohash
+
+#### 返回值
+
+中心点纬度、中心点经度、边界纬度最小值、边界纬度最大值、边界经度最小值、边界经度最大值的数组：`ARRAY<DOUBLE>` 类型
 
 #### 示例
 
@@ -169,6 +181,10 @@ AS
     - `WGS84`：https://zh.wikipedia.org/wiki/世界大地测量系统
     - `GCJ02`：https://zh.wikipedia.org/wiki/中华人民共和国测绘限制
     - `BD09`：https://lbsyun.baidu.com/index.php?title=coordinate
+
+#### 返回值
+
+转换后坐标系的经纬度：`ARRAY<DOUBLE>` 类型
 
 #### 示例
 
