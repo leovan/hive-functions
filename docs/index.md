@@ -15,9 +15,9 @@
 | 6    | 地理     | `COORDINATE_SYSTEM_CONVERT`  | 根据给定的经纬度以及转换前后坐标系计算转换后坐标系的经纬度   |
 | 7    | JSON     | `TO_JSON`                    | 将 Hive 结构（例如：`LIST`，`MAP`，`NAMED_STRUCT` 等）转换成为 JSON |
 | 8    | JSON     | `EXTRACT_JSON`               | 根据 JSON PATH 提取 JSON 中对应的值                          |
-| 1    | 网络     | `FORMAT_MAC_ADDRESS`         | 格式化 MAC 地址                                              |
-| 2    | 网络     | `FORMAT_IP_ADDRESS`          | 格式化 IP 地址                                               |
-| 9    | 文本     | `BLANK_TO_NULL`              | 将空字符串转换为 NULL                                        |
+| 9    | 网络     | `FORMAT_MAC_ADDRESS`         | 格式化 MAC 地址                                              |
+| 10   | 网络     | `FORMAT_IP_ADDRESS`          | 格式化 IP 地址                                               |
+| 11   | 文本     | `BLANK_TO_NULL`              | 将空字符串转换为 NULL                                        |
 
 ## 许可
 
