@@ -24,7 +24,6 @@ nav:
 # Theme
 theme:
   name: material
-  custom_dir: overrides
   include_search_page: false
   search_index_only: true
   language: zh
