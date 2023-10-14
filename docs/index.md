@@ -1,4 +1,10 @@
-# Hive 函数
+# Hive 函数 <img src="images/hive-functions-icon.png" align="right" alt="logo" style="border: none; margin: 0; float: right; height: 110px;">
+
+![License](https://img.shields.io/github/license/leovan/hive-functions.svg)
+![Issues](https://img.shields.io/github/issues/leovan/hive-functions.svg)
+![Build](https://img.shields.io/travis/com/leovan/hive-functions.svg)
+
+---
 
 ## 简介
 
