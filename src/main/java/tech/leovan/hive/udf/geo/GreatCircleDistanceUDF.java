@@ -75,14 +75,14 @@ public class GreatCircleDistanceUDF extends UDF {
                 fromLatitudeRadians, fromLongitudeRadians,
                 toLatitudeRadians, toLongitudeRadians);
 
-        double earthRadius = DistanceUtils.EARTH_MEAN_RADIUS_KM;
+        double earthRadius = DistanceUtils.EARTH_MEAN_RADIUS_KM * 1000.;
 
         switch (earthRadiusType) {
             case "mean":
-                earthRadius = DistanceUtils.EARTH_MEAN_RADIUS_KM;
+                earthRadius = DistanceUtils.EARTH_MEAN_RADIUS_KM * 1000.;
                 break;
             case "equatorial":
-                earthRadius = DistanceUtils.EARTH_EQUATORIAL_RADIUS_KM;
+                earthRadius = DistanceUtils.EARTH_EQUATORIAL_RADIUS_KM * 1000.;
                 break;
         }
 

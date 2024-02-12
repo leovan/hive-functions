@@ -1,4 +1,4 @@
-# 文本相关函数
+# 文本函数
 
 ## 函数
 
@@ -16,7 +16,7 @@ AS
 #### 参数
 
 - TEXT（必选）：待转换文本
-- TRIM（可选）：`BOOLEAN` 类型，是否去除字符串两端空白字符
+- TRIM（可选）：`BOOLEAN` 类型，是否去除字符串两端空白字符，默认为 `TRUE`
 
 #### 返回值
 
@@ -70,7 +70,7 @@ SQL：
 
 ```sql
 SELECT
-  BLANK_TO_NULL('\t', false)
+  BLANK_TO_NULL('\t', FALSE)
 ;
 ```
 

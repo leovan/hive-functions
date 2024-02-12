@@ -2,57 +2,6 @@
 
 ## 函数
 
-### `TO_JSON`
-
-将 Hive 结构（例如：`LIST`，`MAP`，`NAMED_STRUCT` 等）转换成为 JSON。
-
-```sql
-CREATE TEMPORARY FUNCTION
-  TO_JSON
-AS
-  'tech.leovan.hive.udf.json.ToJsonUDF';
-```
-
-#### 参数
-
-- STRUCT（必选）：待转换的 Hive 结构
-- CONVERT_TO_CAMEL_CASE（可选）：`BOOLEAN` 类型，是否将 JSON 的 KEY 转换为 Camel Case 样式
-
-#### 返回值
-
-JSON：`STRING` 类型
-
-#### 示例
-
-SQL：
-
-```sql
-SELECT
-  TO_JSON(
-    NAMED_STRUCT(
-      "k1", 0,
-      "k2", "a string",
-      "k3", ARRAY(4, 5, 6),
-      "k4", MAP("a", 2.3, "b", 5.6)
-    )
-  )
-;
-```
-
-输出结果为：
-
-```json
-{
-  "k1": 0,
-  "k2": "a string",
-  "k3": [4, 5, 6],
-  "k4": {
-    "a": 2.3,
-    "b": 5.6
-  }
-}
-```
-
 ### `EXTRACT_JSON`
 
 根据 JSON PATH 提取 JSON 中对应的值。
@@ -174,4 +123,55 @@ SELECT
 
 ```
 3
+```
+
+### `TO_JSON`
+
+将 Hive 结构（例如：`LIST`，`MAP`，`NAMED_STRUCT` 等）转换成为 JSON。
+
+```sql
+CREATE TEMPORARY FUNCTION
+  TO_JSON
+AS
+  'tech.leovan.hive.udf.json.ToJsonUDF';
+```
+
+#### 参数
+
+- STRUCT（必选）：待转换的 Hive 结构
+- CONVERT_TO_CAMEL_CASE（可选）：`BOOLEAN` 类型，是否将 JSON 的 KEY 转换为 Camel Case 样式，默认为 `FALSE`
+
+#### 返回值
+
+JSON：`STRING` 类型
+
+#### 示例
+
+SQL：
+
+```sql
+SELECT
+  TO_JSON(
+    NAMED_STRUCT(
+      "k1", 0,
+      "k2", "a string",
+      "k3", ARRAY(4, 5, 6),
+      "k4", MAP("a", 2.3, "b", 5.6)
+    )
+  )
+;
+```
+
+输出结果为：
+
+```json
+{
+  "k1": 0,
+  "k2": "a string",
+  "k3": [4, 5, 6],
+  "k4": {
+    "a": 2.3,
+    "b": 5.6
+  }
+}
 ```

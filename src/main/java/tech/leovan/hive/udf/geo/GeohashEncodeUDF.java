@@ -13,7 +13,7 @@ import org.locationtech.spatial4j.io.GeohashUtils;
 public class GeohashEncodeUDF extends UDF {
     public String evaluate(Double latitude, Double longitude, Integer precision) throws Exception {
         if (precision < 1 || precision > 12) {
-            throw new UDFArgumentException(String.format("精度 [PRECISION] 应取 [1, 12] 范围内的整数值"));
+            throw new UDFArgumentException("精度 [PRECISION] 应取 [1, 12] 范围内的整数值");
         }
 
         if (longitude == null ||

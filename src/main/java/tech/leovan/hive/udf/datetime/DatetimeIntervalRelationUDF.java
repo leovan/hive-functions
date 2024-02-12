@@ -4,10 +4,13 @@ import org.apache.hadoop.hive.ql.exec.Description;
 import org.apache.hadoop.hive.ql.exec.UDF;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 @Description(
         name = "DATETIME_INTERVAL_RELATION",
-        value = "_FUNC_(FIRST_START_DATETIME, FIRST_END_DATETIME, SECOND_START_DATETIME, SECOND_END_DATETIME) - 日期时间关系"
+        value = "_FUNC_(FIRST_START_DATETIME, FIRST_END_DATETIME, SECOND_START_DATETIME, SECOND_END_DATETIME, DATETIME_FORMAT) - 日期时间关系"
 )
 public class DatetimeIntervalRelationUDF extends UDF {
     private enum DatetimeIntervalRelation {
@@ -91,18 +94,26 @@ public class DatetimeIntervalRelationUDF extends UDF {
     }
 
     public String evaluate(
-            String firstStartDatetime,
-            String firstEndDatetime,
-            String secondStartDatetime,
-            String secondEndDatetime) {
-        if (firstStartDatetime == null ||
-                firstEndDatetime == null ||
-                secondStartDatetime == null ||
-                secondEndDatetime == null) {
+            String firstStartDatetimeString,
+            String firstEndDatetimeString,
+            String secondStartDatetimeString,
+            String secondEndDatetimeString,
+            String datetimeFormat) {
+        if (firstStartDatetimeString == null ||
+                firstEndDatetimeString == null ||
+                secondStartDatetimeString == null ||
+                secondEndDatetimeString == null) {
             return DatetimeIntervalRelation.VALUE_ERROR.typeName;
         }
 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(datetimeFormat);
+
         try {
+            LocalDateTime firstStartDatetime = LocalDateTime.parse(firstStartDatetimeString, formatter);
+            LocalDateTime firstEndDatetime = LocalDateTime.parse(firstEndDatetimeString, formatter);
+            LocalDateTime secondStartDatetime = LocalDateTime.parse(secondStartDatetimeString, formatter);
+            LocalDateTime secondEndDatetime = LocalDateTime.parse(secondEndDatetimeString, formatter);
+
             long firstStartDatetimeTS = Timestamp.valueOf(firstStartDatetime).getTime();
             long firstEndDatetimeTS = Timestamp.valueOf(firstEndDatetime).getTime();
             long secondStartDatetimeTS = Timestamp.valueOf(secondStartDatetime).getTime();
@@ -114,10 +125,25 @@ public class DatetimeIntervalRelationUDF extends UDF {
                     secondStartDatetimeTS,
                     secondEndDatetimeTS
             ).typeName;
-        } catch (IllegalArgumentException e) {
+        } catch (DateTimeParseException | IllegalArgumentException e) {
             return DatetimeIntervalRelation.FORMAT_ERROR.typeName;
         } catch (Exception e) {
             return DatetimeIntervalRelation.VALUE_ERROR.typeName;
         }
+    }
+
+
+
+    public String evaluate(
+            String firstStartDatetimeString,
+            String firstEndDatetimeString,
+            String secondStartDatetimeString,
+            String secondEndDatetimeString) {
+        return evaluate(
+                firstStartDatetimeString,
+                firstEndDatetimeString,
+                secondStartDatetimeString,
+                secondEndDatetimeString,
+                "yyyy-MM-dd HH:mm:ss");
     }
 }

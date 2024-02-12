@@ -1,11 +1,16 @@
 package tech.leovan.hive.udf.utils;
 
+import org.locationtech.spatial4j.context.jts.JtsSpatialContext;
+import org.locationtech.spatial4j.shape.Shape;
+
 /**
  * 参考：
  * 1. https://gist.github.com/jp1017/71bd0976287ce163c11a7cb963b04dd8
  * 2. https://github.com/wandergis/coordtransform
  */
 public class GeoUtils {
+    private static final JtsSpatialContext CTX = JtsSpatialContext.GEO;
+
     /**
      * 扁率
      */
@@ -35,6 +40,11 @@ public class GeoUtils {
      * 地球半径类型
      */
     public static final String[] EARTH_RADIUS_TYPE = new String[]{"mean", "equatorial"};
+
+    /**
+     * 地理文本格式
+     */
+    public static final String[] GEO_STRING_FORMAT = new String[]{"wkt", "geojson"};
 
     /**
      * Description:
@@ -185,5 +195,26 @@ public class GeoUtils {
     public static double[] BD09ToWGS84(double lat, double lng) {
         double[] gcj92 = BD09ToGCJ02(lat, lng);
         return GCJ02ToWGS84(gcj92[0], gcj92[1]);
+    }
+
+    /**
+     * Description:
+     *   读取 Shape
+     * @param shapeString Shape 文本
+     * @param shapeStringFormat Shape 文本格式
+     * @return Shape
+     */
+    public static Shape readShape(String shapeString, String shapeStringFormat) {
+        Shape shape = null;
+
+        try {
+            if ("wkt".equalsIgnoreCase(shapeStringFormat)) {
+                shape = CTX.getFormats().getWktReader().read(shapeString);
+            } else if ("geojson".equalsIgnoreCase(shapeStringFormat)) {
+                shape = CTX.getFormats().getGeoJsonReader().read(shapeString);
+            }
+        } catch (Exception ignored) {}
+
+        return shape;
     }
 }

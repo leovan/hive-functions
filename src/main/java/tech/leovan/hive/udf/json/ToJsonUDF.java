@@ -53,9 +53,9 @@ public class ToJsonUDF extends GenericUDF {
     }
 
     private class MapInspectorHandle implements InspectorHandle {
-        private MapObjectInspector mapInspector;
-        private StringObjectInspector keyInspector;
-        private InspectorHandle valueHandle;
+        private final MapObjectInspector mapInspector;
+        private final StringObjectInspector keyInspector;
+        private final InspectorHandle valueHandle;
 
         public MapInspectorHandle(MapObjectInspector inspector) throws UDFArgumentException {
             mapInspector = inspector;
@@ -95,9 +95,9 @@ public class ToJsonUDF extends GenericUDF {
     }
 
     private class StructInspectorHandle implements InspectorHandle {
-        private StructObjectInspector structInspector;
-        private List<String> fieldNames;
-        private List<InspectorHandle> fieldInspectorHandles;
+        private final StructObjectInspector structInspector;
+        private final List<String> fieldNames;
+        private final List<InspectorHandle> fieldInspectorHandles;
 
         public StructInspectorHandle(StructObjectInspector inspector) throws UDFArgumentException {
             structInspector = inspector;
@@ -137,8 +137,8 @@ public class ToJsonUDF extends GenericUDF {
     }
 
     private class ListInspectorHandle implements InspectorHandle {
-        private ListObjectInspector listInspector;
-        private InspectorHandle valueHandle;
+        private final ListObjectInspector listInspector;
+        private final InspectorHandle valueHandle;
 
         public ListInspectorHandle(ListObjectInspector inspector) throws UDFArgumentException {
             listInspector = inspector;
@@ -163,7 +163,7 @@ public class ToJsonUDF extends GenericUDF {
     }
 
     private class StringInspectorHandle implements InspectorHandle {
-        private StringObjectInspector stringInspector;
+        private final StringObjectInspector stringInspector;
 
         public StringInspectorHandle(StringObjectInspector inspector) {
             stringInspector = inspector;
@@ -181,7 +181,7 @@ public class ToJsonUDF extends GenericUDF {
     }
 
     private class IntInspectorHandle implements InspectorHandle {
-        private IntObjectInspector intInspector;
+        private final IntObjectInspector intInspector;
 
         public IntInspectorHandle(IntObjectInspector inspector) {
             intInspector = inspector;
@@ -217,7 +217,7 @@ public class ToJsonUDF extends GenericUDF {
     }
 
     private class LongInspectorHandle implements InspectorHandle {
-        private LongObjectInspector longInspector;
+        private final LongObjectInspector longInspector;
 
         public LongInspectorHandle(LongObjectInspector inspector) {
             longInspector = inspector;
@@ -235,7 +235,7 @@ public class ToJsonUDF extends GenericUDF {
     }
 
     private class ShortInspectorHandle implements InspectorHandle {
-        private ShortObjectInspector shortInspector;
+        private final ShortObjectInspector shortInspector;
 
         public ShortInspectorHandle(ShortObjectInspector inspector) {
             shortInspector = inspector;
@@ -253,7 +253,7 @@ public class ToJsonUDF extends GenericUDF {
     }
 
     private class ByteInspectorHandle implements InspectorHandle {
-        private ByteObjectInspector byteInspector;
+        private final ByteObjectInspector byteInspector;
 
         public ByteInspectorHandle(ByteObjectInspector inspector) {
             byteInspector = inspector;
@@ -271,7 +271,7 @@ public class ToJsonUDF extends GenericUDF {
     }
 
     private class FloatInspectorHandle implements InspectorHandle {
-        private FloatObjectInspector floatInspector;
+        private final FloatObjectInspector floatInspector;
 
         public FloatInspectorHandle(FloatObjectInspector inspector) {
             floatInspector = inspector;
@@ -289,7 +289,7 @@ public class ToJsonUDF extends GenericUDF {
     }
 
     private class BooleanInspectorHandle implements InspectorHandle {
-        private BooleanObjectInspector booleanInspector;
+        private final BooleanObjectInspector booleanInspector;
 
         public BooleanInspectorHandle(BooleanObjectInspector inspector) {
             booleanInspector = inspector;
@@ -307,7 +307,7 @@ public class ToJsonUDF extends GenericUDF {
     }
 
     private class BinaryInspectorHandle implements InspectorHandle {
-        private BinaryObjectInspector binaryInspector;
+        private final BinaryObjectInspector binaryInspector;
 
         public BinaryInspectorHandle(BinaryObjectInspector inspector) {
             binaryInspector = inspector;
@@ -325,8 +325,8 @@ public class ToJsonUDF extends GenericUDF {
     }
 
     private class TimestampInspectorHandle implements InspectorHandle {
-        private TimestampObjectInspector timestampInspector;
-        private DateTimeFormatter isoFormatter = ISODateTimeFormat.dateTimeNoMillis();
+        private final TimestampObjectInspector timestampInspector;
+        private final DateTimeFormatter isoFormatter = ISODateTimeFormat.dateTimeNoMillis();
 
         public TimestampInspectorHandle(TimestampObjectInspector inspector) {
             timestampInspector = inspector;

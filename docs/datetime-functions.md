@@ -15,16 +15,17 @@ AS
 
 #### 参数
 
-- FIRST_START_DATETIME（必选）：`STRING` 类型，第一个开始日期时间，格式为 `yyyy-MM-dd HH:mm:ss`
-- FIRST_END_DATETIME（必选）：`STRING` 类型，第一个结束日期时间，格式为 `yyyy-MM-dd HH:mm:ss`
-- SECOND_START_DATETIME（必选）：`STRING` 类型，第二个开始日期时间，格式为 `yyyy-MM-dd HH:mm:ss`
-- SECOND_END_DATETIME（必选）：`STRING` 类型，第二个结束日期时间，格式为 `yyyy-MM-dd HH:mm:ss`
+- FIRST_START_DATETIME（必选）：`STRING` 类型，第一个开始日期时间
+- FIRST_END_DATETIME（必选）：`STRING` 类型，第一个结束日期时间
+- SECOND_START_DATETIME（必选）：`STRING` 类型，第二个开始日期时间
+- SECOND_END_DATETIME（必选）：`STRING` 类型，第二个结束日期时间
+- DATETIME_FORMAT（可选）：`STRING` 类型，日期时间格式，默认为 `yyyy-MM-dd HH:mm:ss`
 
 #### 返回值
 
 日期时间区间关系名称：`STRING` 类型
 
-可能得返回值包括：`Precedes`，`PrecededBy`，`Meets`，`MetBy`，`Overlaps`，`OverlappedBy`，`Starts`，`Finishes`，`StartedBy`，`FinishedBy`，`During`，`Contains`，`Equals`，`FormatError`，`ValueError`。
+可能的返回值包括：`Precedes`，`PrecededBy`，`Meets`，`MetBy`，`Overlaps`，`OverlappedBy`，`Starts`，`Finishes`，`StartedBy`，`FinishedBy`，`During`，`Contains`，`Equals`，`FormatError`，`ValueError`。
 
 当参数的格式错误时，例如：`1970/01/01 00:00:00`，返回 `FormatError`。
 
@@ -85,6 +86,26 @@ SELECT
     '1990-01-02 00:00:00',
     '1990-01-03 00:00:00',
     '1990-01-04 00:00:00'
+  )
+;
+```
+
+输出结果为：
+
+```txt
+Precedes
+```
+
+SQL：
+
+```sql
+SELECT
+  DATETIME_INTERVAL_RELATION(
+    '1990/01/01 00:00:00',
+    '1990/01/02 00:00:00',
+    '1990/01/03 00:00:00',
+    '1990/01/04 00:00:00',
+    'yyyy/MM/dd HH:mm:ss'
   )
 ;
 ```

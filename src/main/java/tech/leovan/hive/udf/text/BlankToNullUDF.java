@@ -22,7 +22,7 @@ public class BlankToNullUDF extends UDF {
             checkText = checkText.trim();
         }
 
-        if ("".equals(checkText)) {
+        if (checkText.isEmpty()) {
             return null;
         } else {
             return text;

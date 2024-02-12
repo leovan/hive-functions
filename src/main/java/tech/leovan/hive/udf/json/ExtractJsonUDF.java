@@ -41,7 +41,7 @@ public class ExtractJsonUDF extends UDF {
     }
 
     public String evaluate(String jsonStr, String jsonPath) {
-        if (jsonPath == null || "".equals(jsonPath.trim())) {
+        if (jsonPath == null || jsonPath.trim().isEmpty()) {
             return null;
         }
 

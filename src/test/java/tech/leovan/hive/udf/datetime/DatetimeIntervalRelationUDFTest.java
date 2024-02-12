@@ -34,6 +34,16 @@ public class DatetimeIntervalRelationUDFTest {
         Assertions.assertEquals(
                 "Precedes",
                 udf.evaluate(
+                        "1990/01/01 00:00:00",
+                        "1990/01/02 00:00:00",
+                        "1990/01/03 00:00:00",
+                        "1990/01/04 00:00:00",
+                        "yyyy/MM/dd HH:mm:ss"
+                )
+        );
+        Assertions.assertEquals(
+                "Precedes",
+                udf.evaluate(
                         "1990-01-01 00:00:00",
                         "1990-01-02 00:00:00",
                         "1990-01-03 00:00:00",
