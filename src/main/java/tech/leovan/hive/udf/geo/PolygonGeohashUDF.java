@@ -1,6 +1,5 @@
 package tech.leovan.hive.udf.geo;
 
-import org.elasticsearch.geometry.utils.Geohash;
 import tech.leovan.hive.udf.utils.GeoUtils;
 import org.apache.hadoop.hive.ql.exec.Description;
 import org.apache.hadoop.hive.ql.exec.UDF;
@@ -63,7 +62,7 @@ public class PolygonGeohashUDF extends UDF {
                 geohashes.add(geohash);
 
                 List<String> geohashNeighbors = new ArrayList<>();
-                Geohash.addNeighbors(geohash, geohashNeighbors);
+                GeoUtils.addNeighbors(geohash, geohashNeighbors);
 
                 for (String geohashNeighbor : geohashNeighbors) {
                     if (!geohashes.contains(geohashNeighbor) && !testingGeohashes.contains(geohashNeighbor)) {

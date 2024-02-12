@@ -3,6 +3,9 @@ package tech.leovan.hive.udf.utils;
 import org.locationtech.spatial4j.context.jts.JtsSpatialContext;
 import org.locationtech.spatial4j.shape.Shape;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 /**
  * 参考：
  * 1. https://gist.github.com/jp1017/71bd0976287ce163c11a7cb963b04dd8
@@ -45,6 +48,21 @@ public class GeoUtils {
      * 地理文本格式
      */
     public static final String[] GEO_STRING_FORMAT = new String[]{"wkt", "geojson"};
+
+    /**
+     * Copied from org.elasticsearch.geometry.utils.Geohash
+     */
+    private static final char[] BASE_32 = new char[]{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'j', 'k', 'm', 'n', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+
+    /**
+     * Copied from org.elasticsearch.geometry.utils.Geohash
+     */
+    private static final String BASE_32_STRING;
+
+    static {
+        // Copied from org.elasticsearch.geometry.utils.Geohash
+        BASE_32_STRING = new String(BASE_32);
+    }
 
     /**
      * Description:
@@ -216,5 +234,76 @@ public class GeoUtils {
         } catch (Exception ignored) {}
 
         return shape;
+    }
+
+    /**
+     * Copied from org.elasticsearch.geometry.utils.Geohash
+     */
+    public static Collection<? extends CharSequence> getNeighbors(String geohash) {
+        return addNeighborsAtLevel(geohash, geohash.length(), new ArrayList(8));
+    }
+
+    /**
+     * Copied from org.elasticsearch.geometry.utils.Geohash
+     */
+    public static <E extends Collection<? super String>> void addNeighbors(String geohash, E neighbors) {
+        addNeighborsAtLevel(geohash, geohash.length(), neighbors);
+    }
+
+    /**
+     * Copied from org.elasticsearch.geometry.utils.Geohash
+     */
+    public static <E extends Collection<? super String>> E addNeighborsAtLevel(String geohash, int level, E neighbors) {
+        String south = getNeighbor(geohash, level, 0, -1);
+        String north = getNeighbor(geohash, level, 0, 1);
+        if (north != null) {
+            neighbors.add(getNeighbor(north, level, -1, 0));
+            neighbors.add(north);
+            neighbors.add(getNeighbor(north, level, 1, 0));
+        }
+
+        neighbors.add(getNeighbor(geohash, level, -1, 0));
+        neighbors.add(getNeighbor(geohash, level, 1, 0));
+        if (south != null) {
+            neighbors.add(getNeighbor(south, level, -1, 0));
+            neighbors.add(south);
+            neighbors.add(getNeighbor(south, level, 1, 0));
+        }
+
+        return neighbors;
+    }
+
+    /**
+     * Copied from org.elasticsearch.geometry.utils.Geohash
+     */
+    public static String getNeighbor(String geohash, int level, int dx, int dy) {
+        int cell = BASE_32_STRING.indexOf(geohash.charAt(level - 1));
+        int x0 = cell & 1;
+        int y0 = cell & 2;
+        int x1 = cell & 4;
+        int y1 = cell & 8;
+        int x2 = cell & 16;
+        int x = x0 + x1 / 2 + x2 / 4;
+        int y = y0 / 2 + y1 / 4;
+        if (level != 1) {
+            int nx = level % 2 == 1 ? x + dx : x + dy;
+            int ny = level % 2 == 1 ? y + dy : y + dx;
+            if (nx >= 0 && nx <= 7 && ny >= 0 && ny <= 3) {
+                String var10000 = geohash.substring(0, level - 1);
+                return var10000 + encodeBase32(nx, ny);
+            } else {
+                String neighbor = getNeighbor(geohash, level - 1, dx, dy);
+                return neighbor != null ? neighbor + encodeBase32(nx, ny) : neighbor;
+            }
+        } else {
+            return (dy >= 0 || y != 0) && (dy <= 0 || y != 3) ? Character.toString(encodeBase32(x + dx, y + dy)) : null;
+        }
+    }
+
+    /**
+     * Copied from org.elasticsearch.geometry.utils.Geohash
+     */
+    private static char encodeBase32(int x, int y) {
+        return BASE_32[((x & 1) + (y & 1) * 2 + (x & 2) * 2 + (y & 2) * 4 + (x & 4) * 4) % 32];
     }
 }
