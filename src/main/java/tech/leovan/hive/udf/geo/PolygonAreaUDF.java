@@ -1,9 +1,8 @@
 package tech.leovan.hive.udf.geo;
 
+import tech.leovan.hive.udf.utils.GeoUtils;
 import org.apache.hadoop.hive.ql.exec.Description;
 import org.apache.hadoop.hive.ql.exec.UDF;
-import org.geotools.api.referencing.crs.CoordinateReferenceSystem;
-import org.geotools.api.referencing.operation.MathTransform;
 import org.geotools.geometry.jts.JTS;
 import org.geotools.referencing.CRS;
 import org.locationtech.jts.geom.Geometry;
@@ -11,7 +10,8 @@ import org.locationtech.jts.geom.MultiPolygon;
 import org.locationtech.jts.geom.Polygon;
 import org.locationtech.spatial4j.context.jts.JtsSpatialContext;
 import org.locationtech.spatial4j.shape.Shape;
-import tech.leovan.hive.udf.utils.GeoUtils;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.referencing.operation.MathTransform;
 
 @Description(
         name = "POLYGON_AREA",
