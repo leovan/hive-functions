@@ -42,11 +42,26 @@ public class PolygonGeohashUDF extends UDF {
             return null;
         }
 
-        Geometry polygon = CTX.getShapeFactory().getGeometryFrom(shape);
-        if (!(polygon instanceof Polygon || polygon instanceof MultiPolygon)) {
+        Geometry geometry = CTX.getShapeFactory().getGeometryFrom(shape);
+        if (!(geometry instanceof Polygon || geometry instanceof MultiPolygon)) {
             return null;
         }
 
+        Set<String> geohashes = new HashSet<>();
+
+        if (geometry instanceof Polygon) {
+            geohashes = getGeoHashes((Polygon) geometry, precision);
+        } else {
+            for (int i = 0; i < geometry.getNumGeometries(); i++){
+                Geometry polygon = geometry.getGeometryN(i);
+                geohashes.addAll(getGeoHashes((Polygon) polygon, precision));
+            }
+        }
+
+        return new ArrayList<>(geohashes);
+    }
+
+    private Set<String> getGeoHashes(Polygon polygon, Integer precision){
         Point centroid = polygon.getCentroid();
 
         Set<String> geohashes = new HashSet<>();
@@ -55,8 +70,7 @@ public class PolygonGeohashUDF extends UDF {
 
         while (!testingGeohashes.isEmpty()) {
             String geohash = testingGeohashes.poll();
-            Geometry geohashGeometry = CTX.getShapeFactory().getGeometryFrom(
-                    GeohashUtils.decodeBoundary(geohash, CTX));
+            Geometry geohashGeometry = CTX.getShapeFactory().getGeometryFrom(GeohashUtils.decodeBoundary(geohash, CTX));
 
             if (polygon.contains(geohashGeometry) || polygon.intersects(geohashGeometry)) {
                 geohashes.add(geohash);
@@ -72,7 +86,7 @@ public class PolygonGeohashUDF extends UDF {
             }
         }
 
-        return new ArrayList<>(geohashes);
+        return geohashes;
     }
 
     public List<String> evaluate(

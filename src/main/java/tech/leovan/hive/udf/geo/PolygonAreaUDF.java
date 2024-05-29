@@ -39,14 +39,14 @@ public class PolygonAreaUDF extends UDF {
             return null;
         }
 
-        Geometry polygon = CTX.getShapeFactory().getGeometryFrom(shape);
-        if (!(polygon instanceof Polygon || polygon instanceof MultiPolygon)) {
+        Geometry geometry = CTX.getShapeFactory().getGeometryFrom(shape);
+        if (!(geometry instanceof Polygon || geometry instanceof MultiPolygon)) {
             return null;
         }
 
         try {
             MathTransform transform = CRS.findMathTransform(SOURCE_CRS, TARGET_CRS, false);
-            Geometry geometryMercator = JTS.transform(polygon, transform);
+            Geometry geometryMercator = JTS.transform(geometry, transform);
 
             return geometryMercator.getArea();
         } catch (Exception e) {
