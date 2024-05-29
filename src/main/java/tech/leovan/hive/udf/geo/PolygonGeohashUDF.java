@@ -46,7 +46,20 @@ public class PolygonGeohashUDF extends UDF {
         if (!(polygon instanceof Polygon || polygon instanceof MultiPolygon)) {
             return null;
         }
+//      如果是单多边形区域,直接采用原开源代码计算方式。如果是多多边形需要按照单多边形计算后再去重合并
+        Set<String> geohashes = new HashSet();
+        if (polygon instanceof Polygon) {
+            geohashes = getGeoHashes(polygon, precision);
+        }else if(polygon instanceof MultiPolygon){
+            for (int i = 0; i < polygon.getNumGeometries(); i++){
+                Geometry singlePolygon = polygon.getGeometryN(i);
+                geohashes.addAll(getGeoHashes(singlePolygon, precision));
+            }
+        }
+        return new ArrayList<>(geohashes);
+    }
 
+    private Set<String> getGeoHashes(Geometry polygon, Integer precision){
         Point centroid = polygon.getCentroid();
 
         Set<String> geohashes = new HashSet<>();
@@ -71,8 +84,7 @@ public class PolygonGeohashUDF extends UDF {
                 }
             }
         }
-
-        return new ArrayList<>(geohashes);
+        return geohashes;
     }
 
     public List<String> evaluate(
