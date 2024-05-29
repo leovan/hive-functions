@@ -42,24 +42,26 @@ public class PolygonGeohashUDF extends UDF {
             return null;
         }
 
-        Geometry polygon = CTX.getShapeFactory().getGeometryFrom(shape);
-        if (!(polygon instanceof Polygon || polygon instanceof MultiPolygon)) {
+        Geometry geometry = CTX.getShapeFactory().getGeometryFrom(shape);
+        if (!(geometry instanceof Polygon || geometry instanceof MultiPolygon)) {
             return null;
         }
-//      如果是单多边形区域,直接采用原开源代码计算方式。如果是多多边形需要按照单多边形计算后再去重合并
-        Set<String> geohashes = new HashSet();
-        if (polygon instanceof Polygon) {
-            geohashes = getGeoHashes(polygon, precision);
-        }else if(polygon instanceof MultiPolygon){
-            for (int i = 0; i < polygon.getNumGeometries(); i++){
-                Geometry singlePolygon = polygon.getGeometryN(i);
-                geohashes.addAll(getGeoHashes(singlePolygon, precision));
+
+        Set<String> geohashes = new HashSet<>();
+
+        if (geometry instanceof Polygon) {
+            geohashes = getGeoHashes((Polygon) geometry, precision);
+        } else {
+            for (int i = 0; i < geometry.getNumGeometries(); i++){
+                Geometry polygon = geometry.getGeometryN(i);
+                geohashes.addAll(getGeoHashes((Polygon) polygon, precision));
             }
         }
+
         return new ArrayList<>(geohashes);
     }
 
-    private Set<String> getGeoHashes(Geometry polygon, Integer precision){
+    private Set<String> getGeoHashes(Polygon polygon, Integer precision){
         Point centroid = polygon.getCentroid();
 
         Set<String> geohashes = new HashSet<>();
@@ -68,8 +70,7 @@ public class PolygonGeohashUDF extends UDF {
 
         while (!testingGeohashes.isEmpty()) {
             String geohash = testingGeohashes.poll();
-            Geometry geohashGeometry = CTX.getShapeFactory().getGeometryFrom(
-                    GeohashUtils.decodeBoundary(geohash, CTX));
+            Geometry geohashGeometry = CTX.getShapeFactory().getGeometryFrom(GeohashUtils.decodeBoundary(geohash, CTX));
 
             if (polygon.contains(geohashGeometry) || polygon.intersects(geohashGeometry)) {
                 geohashes.add(geohash);
@@ -84,6 +85,7 @@ public class PolygonGeohashUDF extends UDF {
                 }
             }
         }
+
         return geohashes;
     }
 
