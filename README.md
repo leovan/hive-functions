@@ -32,4 +32,4 @@
 
 The MIT License (MIT)
 
-版权所有 &copy; 2021-2024，<a href="https://leovan.me" target="_blank">范叶亮 | Leo Van</a>
+版权所有 &copy; 2021-2025，<a href="https://leovan.me" target="_blank">范叶亮 | Leo Van</a>
