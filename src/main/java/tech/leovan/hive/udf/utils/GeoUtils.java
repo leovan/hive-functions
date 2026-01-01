@@ -107,7 +107,7 @@ public class GeoUtils {
 
     /**
      * Description:
-     *   GCJ02 -> WGS84
+     *   GCJ02 转 WGS84
      * @param lat 纬度
      * @param lng 经度
      * @return 转换后经纬度
@@ -133,7 +133,7 @@ public class GeoUtils {
 
     /**
      * Description:
-     *   GCJ02 -> BD09
+     *   GCJ02 转 BD09
      * @param lat 纬度
      * @param lng 经度
      * @return 转换后经纬度
@@ -149,7 +149,7 @@ public class GeoUtils {
 
     /**
      * Description:
-     *   WGS84 -> GCJ02
+     *   WGS84 转 GCJ02
      * @param lat 纬度
      * @param lng 经度
      * @return 转换后经纬度
@@ -175,7 +175,7 @@ public class GeoUtils {
 
     /**
      * Description:
-     *   WGS84 -> BD09
+     *   WGS84 转 BD09
      * @param lat 纬度
      * @param lng 经度
      * @return 转换后经纬度
@@ -187,7 +187,7 @@ public class GeoUtils {
 
     /**
      * Description:
-     *   BD09 -> GCJ02
+     *   BD09 转 GCJ02
      * @param lat 纬度
      * @param lng 经度
      * @return 转换后经纬度
@@ -205,7 +205,7 @@ public class GeoUtils {
 
     /**
      * Description:
-     *   BD09 -> WGS84
+     *   BD09 转 WGS84
      * @param lat 纬度
      * @param lng 经度
      * @return 转换后经纬度

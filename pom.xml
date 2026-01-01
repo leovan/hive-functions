@@ -6,7 +6,7 @@
 
     <groupId>tech.leovan.hive</groupId>
     <artifactId>hive-functions</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
 
     <name>Hive Functions</name>
@@ -320,12 +320,6 @@
                         <goals>
                             <goal>sign</goal>
                         </goals>
-                        <configuration>
-                            <gpgArguments>
-                                <arg>--pinentry-mode</arg>
-                                <arg>loopback</arg>
-                            </gpgArguments>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
