@@ -18,5 +18,5 @@ target
 # Doc
 site
 
-# Design
-*.psd
+# Others
+.cache
